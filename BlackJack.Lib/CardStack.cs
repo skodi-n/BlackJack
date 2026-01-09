@@ -48,8 +48,9 @@ namespace BlackJack.Lib
         public Card DrawCard()
         {
             if (Cards.Count == 0)
+            {
                 return null;
-
+            }
             Card card = Cards[0];
             Cards.RemoveAt(0);
             return card;

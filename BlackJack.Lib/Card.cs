@@ -19,7 +19,7 @@ namespace BlackJack.Lib
 
         public override string ToString()
         {
-            return $"Kartentyp : {Suit} ; Kartenwert : {Value}";
+            return $"Kartentyp: {Suit} ; Kartenwert: {Value}";
         }
     }
 }
