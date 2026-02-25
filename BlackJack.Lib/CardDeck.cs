@@ -6,15 +6,26 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Lib
 {
-    internal class CardDeck
+    /// <summary>Standard-Deck mit 52 Karten.</summary>
+    public class CardDeck
     {
-        Card[] cards = new Card[52];
-        int counter = 0;
+        ICard[] _cards = new ICard[52];
 
-        public Card[] Cards { get; }
+        /// <summary>Alle Karten im Deck.</summary>
+        public ICard[] Cards 
+        { 
+            get
+            {
+                return _cards;
+            }
+        
+        }
 
+        /// <summary>Erstellt und füllt ein 52-Karten-Deck.</summary>
         public CardDeck()
         {
+            int counter = 0;
+
             for (int colour = 0; colour <= 3; colour++)
             {
                 for (int deckValue = 0; deckValue <= 12; deckValue++)
@@ -22,7 +33,7 @@ namespace BlackJack.Lib
                     CardSuit suit = (CardSuit)colour;
                     CardValue value = (CardValue)deckValue;
 
-                    cards[counter++] = new Card(suit, value);
+                    _cards[counter++] = Factory.CreateCard(suit, value);
                 }
             }
         }
