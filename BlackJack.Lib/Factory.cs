@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Lib
 {
-    internal class Factory
+    public class Factory
     {
         /// <summary>Erstellt eine neue Karte.</summary>
         /// <param name="suit">Kartenfarbe der Karte.</param>
@@ -18,5 +18,13 @@ namespace BlackJack.Lib
             return new Card(suit, value);
 
         }
+
+        /// <summary>Erstellt ein Kartenstapel aus KartenDeck</summary>
+        /// <returns>Ein neuer Kartenstapel von <see cref="ICardStack"/>.</returns>
+        public static ICardStack CreateCardStack()
+        {
+            return new CardStack();
+        }
+
     }
 }

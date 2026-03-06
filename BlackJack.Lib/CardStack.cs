@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BlackJack.Lib
 {
     /// <summary>Kartenstapel aus mehreren Decks.</summary>
-    internal class CardStack : ICardStack
+    public class CardStack : ICardStack, ICardPool
     {
         private const int DECKS = 6;
 
@@ -16,13 +16,13 @@ namespace BlackJack.Lib
 
         /// <summary>Erstellt den Stapel und mischt ihn.</summary>
         /// <param name="deck">Deck-Vorlage (wird intern neu erstellt).</param>
-        public CardStack(CardDeck deck)
+        public CardStack()
         {
             Cards = new List<ICard>();
 
             for (int i = 0; i < DECKS; i++)
             {
-                deck = new CardDeck();
+                CardDeck deck = new CardDeck();
 
                 for (int j = 0; j < deck.Cards.Length; j++)
                 {

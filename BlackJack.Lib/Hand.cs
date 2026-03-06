@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Lib
 {
     public partial class Hand
     {
+        public IEnumerable<ICard> GetCards()
+        {
+            return _cards;
+        }
+
         /// <summary>
         /// Speichert sämtliche Karten, die sich aktuell in der Hand befinden.
         /// </summary>
-        private List<ICard> _cards = new List<ICard>();
+        private readonly List<ICard> _cards = new List<ICard>();
 
-        public List<ICard> GetTheCardsOfTheHand { get { return _cards; } }
+        public IReadOnlyList<ICard> HandCards => _cards.AsReadOnly();
 
         /// <summary>
         /// Repräsentiert den momentanen Zustand der Hand.
@@ -35,9 +37,6 @@ namespace BlackJack.Lib
         public void AddCard(ICard card)
         {
             _cards.Add(card);
-
-            // Nach dem Hinzufügen wird der Gesamtwert erneut berechnet
-            CalculateValue();
         }
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace BlackJack.Lib
                 {
                     aces++;
                     value += 11;
-                    continue; // Weiter zur nächsten Karte
+                    continue; // Weiter zur nächsten Kartertds
                 }
 
                 // Karten mit Bild (Jack, Queen, King) zählen immer 10
@@ -68,7 +67,7 @@ namespace BlackJack.Lib
                 else
                 {
                     // Zahlenkarten entsprechen ihrem numerischen Wert
-                    value += (int)currentCard.Value;
+                    value += (int)currentCard.Value + 1;
                 }
             }
 
@@ -129,5 +128,8 @@ namespace BlackJack.Lib
             // Standardfall: Hand ist weiterhin im sicheren Bereich
             Status = HandStatus.Safe;
         }
+
+
+
     }
 }
